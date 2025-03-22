@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(-45deg, #000000, #001920, #000000, #001921);
+            background-size: 400% 400%;
+            animation: gradientBG 10s ease infinite;
+            color: #04F8FF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 2px solid #04F8FF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 110px;
+            color: #04F8FF;
+            position: absolute;
+            top: -35%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .website-name {
+            font-size: 2.5rem;
+            margin: 20px 0;
+            font-weight: 600;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .button {
+            background-color: transparent;
+            color: #04F8FF;
+            padding: 15px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 250px;
+            text-align: left;
+            border: 2px solid #04F8FF;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .button:hover {
+            background-color: rgba(4, 248, 255, 0.1);
+        }
+
+        .button:active {
+            transform: scale(0.95);
+            background-color: rgba(4, 248, 255, 0.2);
+        }
+
+        .button i {
+            font-size: 1.9rem;
+        }
+
+        .button p {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 500;
+            flex-grow: 1;
+        }
+
+        .creator-info {
+            position: absolute;
+            bottom: 20px;
+            top: 115%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.3rem;
+            color: #04F8FF;
+            text-align: center;
+        }
+
+        .creator-info a {
+            color: #04F8FF;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .creator-info a:hover {
+            color: #00bcd4;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <i class="fab fa-facebook-f"></i>
+        </div>
+
+        <h1 class="website-name">FB TOOLS</h1>
+
+        <div class="buttons">
+            <div class="button" onclick="window.location.href='#';">
+                <i class="fas fa-user-plus"></i>
+                <p>Name Generator</p>
+            </div>
+            <div class="button" onclick="window.location.href='https://dispomail.xyz/';">
+                <i class="fas fa-envelope"></i>
+                <p>Temp Mail</p>
+            </div>
+            <div class="button" onclick="window.location.href='#';">
+                <i class="fas fa-shield-alt"></i>
+                <p>2FA</p>
+            </div>
+            <div class="button" onclick="window.location.href='#';">
+                <i class="fas fa-id-card"></i>
+                <p>UID Checker</p>
+            </div>
+        </div>
+
+        <div class="creator-info">
+            Creator By <a href="https://t.me/your_telegram_link" target="_blank">Nahid Ahmed</a>
+        </div>
+    </div>
+</body>
+</html>

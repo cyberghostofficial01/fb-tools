@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FACEBOOK TOOLS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background-color: black;
+            color: #04F3FA;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #111;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 2px solid #04F3FA;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        .back-icon {
+            font-size: 1.5rem;
+            cursor: pointer;
+            position: absolute;
+            left: 20px;
+            color: #04F3FA;
+            transition: color 0.3s;
+        }
+    
+        .back-icon:hover {
+            color: #00bcd4;
+        }
+        
+        .container {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+        }
+
+       .name-container {
+       background-color: #111;
+       padding: 25px;
+       border-radius: 12px;
+       border: 2px solid #04F3FA;
+       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+       text-align: center;
+       width: 350px;
+       max-width: 90%;
+       }
+       
+       .name-container h1 {
+       margin-bottom: 20px;
+       font-size: 24px;
+       color: #04F3FA;
+       }
+       
+       .gender-selection {
+       margin-bottom: 20px;
+       }
+       
+       .gender-selection label {
+       margin-right: 15px;
+       font-size: 18px;
+       color: #04F3FA;
+       }
+       
+       #name-display {
+       margin: 20px 0;
+       font-size: 24px;
+       font-weight: bold;
+       color: #04F3FA;
+       }
+       
+       button {
+       padding: 12px 24px;
+       font-size: 18px;
+       background-color: #04F3FA;
+       color: black;
+       border: none;
+       border-radius: 25px;
+       cursor: pointer;
+       transition: background-color 0.3s ease;
+       }
+       
+       button:hover {
+       background-color: #00bcd4;
+       }
+       
+       .error-message {
+       color: #ff6b6b;
+       font-size: 16px;
+       margin-top: 10px;
+       }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="back-icon" onclick="goBack()">
+            <i class="fas fa-arrow-left"></i> <!-- Back icon -->
+        </div>
+        <h1>FB TOOLS</h1> <!-- Centered title -->
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+    <div class="name-container">
+    <h1>Bangladesh Name Generator</h1>
+    <div class="gender-selection">
+    <label>
+    <input type="checkbox" name="gender" value="male"> Male
+    </label>
+    <label>
+    <input type="checkbox" name="gender" value="female"> Female
+    </label>
+    </div>
+    <div id="name-display">Select at least one gender and click "Generate Name"</div>
+    <div id="error-message" class="error-message"></div>
+    <button id="generate-btn">Generate Name</button>
+    </div>
+    </div>
+    
+
+    <!-- JavaScript for Back Icon -->
+    <script>
+        function goBack() {
+            // Replace 'YOUR_BACK_URL' with the URL you want to redirect to
+            window.location.href = "YOUR_BACK_URL";
+        }
+    </script>
+    <script>
+    // Arrays of Bangladeshi full names (name + surname)
+    const maleNames = [
+    "Nahid Ahmed", "Arif Ahmed", "Sakib Ahmed", "Fahim Ahmed", "Rahim Ahmed",
+    "Karim Khan", "Sohel Khan", "Nasir Khan", "Jamil Khan", "Rafiq Khan",
+    "Tareq Rahman", "Monir Rahman", "Shahid Rahman", "Kamal Rahman", "Sabbir Rahman",
+    "Fahim Islam", "Arif Islam", "Sakib Islam", "Nasir Islam", "Jamil Islam",
+    "Rafiq Chowdhury", "Sohel Chowdhury", "Tareq Chowdhury", "Monir Chowdhury", "Shahid Chowdhury",
+    "Kamal Hossain", "Sabbir Hossain", "Fahim Hossain", "Arif Hossain", "Sakib Hossain",
+    "Nasir Ali", "Jamil Ali", "Rafiq Ali", "Sohel Ali", "Tareq Ali",
+    "Monir Akhtar", "Shahid Akhtar", "Kamal Akhtar", "Sabbir Akhtar", "Fahim Akhtar",
+    "Arif Mia", "Sakib Mia", "Nasir Mia", "Jamil Mia", "Rafiq Mia",
+    "Sohel Sikder", "Tareq Sikder", "Monir Sikder", "Shahid Sikder", "Kamal Sikder",
+    "Sabbir Hasan", "Fahim Hasan", "Arif Hasan", "Sakib Hasan", "Nasir Hasan",
+    "Jamil Uddin", "Rafiq Uddin", "Sohel Uddin", "Tareq Uddin", "Monir Uddin",
+    "Shahid Karim", "Kamal Karim", "Sabbir Karim", "Fahim Karim", "Arif Karim",
+    "Sakib Mia", "Nasir Mia", "Jamil Mia", "Rafiq Mia", "Sohel Mia",
+    "Tareq Ahmed", "Monir Ahmed", "Shahid Ahmed", "Kamal Ahmed", "Sabbir Ahmed",
+    "Fahim Khan", "Arif Khan", "Sakib Khan", "Nasir Khan", "Jamil Khan",
+    "Rafiq Rahman", "Sohel Rahman", "Tareq Rahman", "Monir Rahman", "Shahid Rahman",
+    "Kamal Islam", "Sabbir Islam", "Fahim Islam", "Arif Islam", "Sakib Islam",
+    "Nasir Chowdhury", "Jamil Chowdhury", "Rafiq Chowdhury", "Sohel Chowdhury", "Tareq Chowdhury",
+    "Monir Hossain", "Shahid Hossain", "Kamal Hossain", "Sabbir Hossain", "Fahim Hossain",
+    "Arif Ali", "Sakib Ali", "Nasir Ali", "Jamil Ali", "Rafiq Ali",
+    "Sohel Akhtar", "Tareq Akhtar", "Monir Akhtar", "Shahid Akhtar", "Kamal Akhtar",
+    "Sabbir Mia", "Fahim Mia", "Arif Mia", "Sakib Mia", "Nasir Mia",
+    "Jamil Sikder", "Rafiq Sikder", "Sohel Sikder", "Tareq Sikder", "Monir Sikder",
+    "Shahid Hasan", "Kamal Hasan", "Sabbir Hasan", "Fahim Hasan", "Arif Hasan",
+    "Sakib Uddin", "Nasir Uddin", "Jamil Uddin", "Rafiq Uddin", "Sohel Uddin",
+    "Tareq Karim", "Monir Karim", "Shahid Karim", "Kamal Karim", "Sabbir Karim"
+    ];
+    const femaleNames = [ "Ayesha Ahmed", "Fatima Khan", "Jannat Rahman", "Laila Hossain", "Mina Islam",  
+    "Nadia Chowdhury", "Rina Ali", "Sabrina Akhtar", "Taslima Mia", "Zara Sikder",  
+    "Afreen Jahan", "Anika Sultana", "Arifa Rahman", "Aysha Farzana", "Bisma Islam",  
+    "Dilruba Akhter", "Eliza Khan", "Farhana Jahan", "Faria Ahmed", "Fariha Sultana",  
+    "Hafsa Karim", "Hajera Akhter", "Halima Khatun", "Husna Begum", "Jannatul Ferdous",  
+    "Karishma Islam", "Khadija Farzana", "Labiba Noor", "Lamisa Khan", "Mahjabin Sultana",  
+    "Mahira Islam", "Marufa Chowdhury", "Mim Rahman", "Morsheda Akhter", "Naima Islam",  
+    "Nasima Sultana", "Nazia Hossain", "Nusrat Jahan", "Papia Ahmed", "Parvin Akhter",  
+    "Priya Rahman", "Rafa Noor", "Raisa Islam", "Ramisa Khan", "Rumana Sultana",  
+    "Sadia Karim", "Samira Ahmed", "Sanaya Rahman", "Sharmin Akhter", "Shila Begum",  
+    "Simran Hossain", "Sohana Jahan", "Sumaiya Noor", "Tahmina Islam", "Tania Ahmed",  
+    "Tasfiya Khan", "Taslima Akhter", "Tasmia Islam", "Umaira Sultana", "Warda Karim",  
+    "Yasmin Akhter", "Zinia Rahman", "Zohora Begum", "Afia Islam", "Aleya Chowdhury",  
+    "Anjuman Akhter", "Atiya Noor", "Bipasha Rahman", "Diba Sultana", "Elma Karim",  
+    "Eshita Ahmed", "Fariza Noor", "Fariah Hossain", "Ferdousi Akhter", "Hasina Begum",  
+    "Hena Sultana", "Husni Ara", "Iffat Jahan", "Ishrat Noor", "Jasmin Ahmed",  
+    "Kajol Rahman", "Kamrun Nahar", "Karima Sultana", "Lamisa Chowdhury", "Liza Akhter",  
+    "Mahima Islam", "Maliha Noor", "Manjila Akhter", "Masuma Sultana", "Maya Karim",  
+    "Mou Rahman", "Munni Akhter", "Najma Begum", "Nasrin Jahan", "Neha Karim",  
+    "Nijhum Islam", "Nishi Chowdhury", "Pallabi Rahman", "Papia Noor", "Rabeya Begum",  
+    "Rafia Sultana", "Raihana Islam", "Rakhi Jahan", "Rizwana Akhter", "Romana Rahman",  
+    "Ruksana Karim", "Sadiya Noor", "Sajia Islam", "Salma Akhter", "Samia Rahman",  
+    "Sanjida Noor", "Sarmin Sultana", "Shaila Karim", "Sharifa Begum", "Sharmeen Akhter",  
+    "Shirin Islam", "Silvia Jahan", "Sonia Rahman", "Sonya Chowdhury", "Sumona Noor",  
+    "Tanha Sultana", "Tasmim Islam", "Tashfia Rahman", "Umme Hani", "Umme Salma",  
+    "Uzma Karim", "Wafiya Noor", "Zakia Sultana", "Zannat Islam", "Zebunnesa Begum" ]  
+    ;
+    
+    // Get DOM elements
+    const generateBtn = document.getElementById("generate-btn");
+    const nameDisplay = document.getElementById("name-display");
+    const errorMessage = document.getElementById("error-message");
+    
+    // Function to generate the next name in sequence
+    function generateName() {
+    const selectedGenders = document.querySelectorAll('input[name="gender"]:checked');
+    if (selectedGenders.length === 0) {
+    errorMessage.textContent = "Please select at least one gender!";
+    nameDisplay.textContent = "";
+    return;
+    } else {
+    errorMessage.textContent = "";
+    }
+    
+    // Combine selected genders
+    const names = [];
+    if (document.querySelector('input[value="male"]:checked')) {
+    names.push(...maleNames);
+    }
+    if (document.querySelector('input[value="female"]:checked')) {
+    names.push(...femaleNames);
+    }
+    
+    // Generate a random name from the combined list
+    const randomName = names[Math.floor(Math.random() * names.length)];
+    nameDisplay.textContent = `Name : ${randomName}`;
+    }
+    
+    // Event listener for the generate button
+    generateBtn.addEventListener("click", generateName);
+    </script>
+</body>
+</html>

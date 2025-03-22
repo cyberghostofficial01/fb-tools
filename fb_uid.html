@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FACEBOOK TOOLS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background-color: black;
+            color: #04F3FA;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #111;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 2px solid #04F3FA;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        .back-icon {
+            font-size: 1.5rem;
+            cursor: pointer;
+            position: absolute;
+            left: 20px;
+            color: #04F3FA;
+            transition: color 0.3s;
+        }
+        .container {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+        }
+        .back-icon:hover {
+            color: #00bcd4;
+        }
+
+        .uid-container {
+        background-color: #111;
+        padding: 25px;
+        border-radius: 12px;
+        border: 2px solid #04F3FA;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 350px;
+        max-width: 90%;
+        }
+        
+        .uid-container h2 {
+        margin-bottom: 20px;
+        font-size: 24px;
+        color: #04F3FA;
+        }
+        
+        textarea {
+        width: 90%;
+        height: 120px;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #04F3FA;
+        background-color: #222;
+        color: #04F3FA;
+        resize: vertical;
+        font-size: 1rem;
+        }
+        
+        .check-btn {
+        width: 100%;
+        padding: 12px;
+        background-color: #04F3FA;
+        color: black;
+        border: none;
+        border-radius: 6px;
+        font-size: 1.1rem;
+        cursor: pointer;
+        margin-top: 10px;
+        transition: background-color 0.3s ease;
+        }
+        
+        .check-btn:hover {
+        background-color: #00bcd4;
+        }
+        
+        .result-box {
+        margin-top: 15px;
+        background-color: #111;
+        padding: 15px;
+        border-radius: 8px;
+        border: 2px solid #04F3FA;
+        }
+        
+        .result-box h3 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+        color: #04F3FA;
+        }
+        
+        .result-box textarea {
+        height: 80px;
+        }
+        
+        .copy-btn {
+        width: 100%;
+        padding: 10px;
+        background-color: #04F3FA;
+        color: black;
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        cursor: pointer;
+        margin-top: 10px;
+        transition: background-color 0.3s ease;
+        }
+        
+        .copy-btn:hover {
+        background-color: #00bcd4;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="back-icon" onclick="goBack()">
+            <i class="fas fa-arrow-left"></i> <!-- Back icon -->
+        </div>
+        <h1>FB TOOLS</h1> <!-- Centered title -->
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+    
+    <div class="uid-container">
+    
+    <h2>Facebook UID Checker</h2>
+    <textarea id="uidInput" placeholder="Enter Facebook UIDs (one per line)"></textarea>
+    <button class="check-btn" onclick="startCheck()">Check UIDs</button>
+    
+    <!-- Live UIDs Box -->
+    <div class="result-box">
+    <h3>Live UIDs (<span id="liveCount">0</span>)</h3>
+    <textarea id="liveResults" readonly></textarea>
+    <button class="copy-btn" onclick="copyResults('liveResults')">Copy Live UIDs</button>
+    </div>
+    
+    <!-- Dead UIDs Box -->
+    <div class="result-box">
+    <h3>Dead UIDs (<span id="deadCount">0</span>)</h3>
+    <textarea id="deadResults" readonly></textarea>
+    <button class="copy-btn" onclick="copyResults('deadResults')">Copy Dead UIDs</button>
+    </div>
+    </div>
+    </div>
+    
+
+    <!-- JavaScript for Back Icon -->
+    <script>
+        function goBack() {
+            // Replace 'YOUR_BACK_URL' with the URL you want to redirect to
+            window.location.href = "YOUR_BACK_URL";
+        }
+    </script>
+    <script>
+    function startCheck() {
+    const input = document.getElementById('uidInput').value.trim();
+    const uids = input.split('\n').filter(uid => uid.trim());
+    
+    if (uids.length === 0) {
+    alert('Please enter UIDs to check');
+    return;
+    }
+    
+    let liveCount = 0;
+    let deadCount = 0;
+    document.getElementById('liveResults').value = '';
+    document.getElementById('deadResults').value = '';
+    document.getElementById('liveCount').innerText = '0';
+    document.getElementById('deadCount').innerText = '0';
+    
+    uids.forEach((uid, index) => {
+    setTimeout(() => {
+    fetch(`https://graph.facebook.com/${uid}/picture?type=normal`)
+    .then(response => {
+    if (response.ok && response.url.includes('100x100')) {
+    document.getElementById('liveResults').value += uid + '\n';
+    liveCount++;
+    document.getElementById('liveCount').innerText = liveCount;
+    } else {
+    document.getElementById('deadResults').value += uid + '\n';
+    deadCount++;
+    document.getElementById('deadCount').innerText = deadCount;
+    }
+    })
+    .catch(() => {
+    document.getElementById('deadResults').value += uid + '\n';
+    deadCount++;
+    document.getElementById('deadCount').innerText = deadCount;
+    });
+    }, index * 100);
+    });
+    }
+    
+    function copyResults(elementId) {
+    const element = document.getElementById(elementId);
+    element.select();
+    document.execCommand('copy');
+    alert('Copied to clipboard!');
+    }
+    </script>
+</body>
+</html>
